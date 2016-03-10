@@ -6,9 +6,9 @@ Before submitting an issue please check if our issue database doesn't already in
 please leave any additional information that may help in resolving the problem, for example means to reproduce the issue.
 The more info we have the easier we can reproduce and the faster we can resolve the issue.
 The bugs can be reported on the issue tracker of the individual components:
-[Open vStorage Framework](https://github.com/openvstorage/framework/issues)
-[Open vStorage Volumedriver](https://github.com/openvstorage/volumedriver/issues)
-[Open vStorage Backend](https://github.com/openvstorage/alba/issues)
+* [Open vStorage Framework](https://github.com/openvstorage/framework/issues)
+* [Open vStorage Volumedriver](https://github.com/openvstorage/volumedriver/issues)
+* [Open vStorage Backend](https://github.com/openvstorage/alba/issues)
 
 ## Request for enhancements
 A specific component enhancement can go on the respective project repositories, general enhancements can be created here in the

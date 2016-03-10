@@ -24,16 +24,17 @@ From Open vStorage perspective a "backend" is an object storage systems like Ama
 The Open vStorage alternative to these backends is an object storage system written in Ocaml developed under the codename [Alba](https://github.com/openvstorage/alba)
 Alba turns commodity x86 storage servers into an always consistent distributed object storage systems.
 
-## Getting started
+# Getting started
 
 Check our gitbooks on [how to get started with an installation](https://openvstorage.gitbooks.io/openvstorage/content/Installation/index.html).
 
-## Nightly tests
+# Nightly tests
 
 A view on the different sets of Nightly test runs can be found [here](http://testrail.openvstorage.com/index.php?/runs/overview/10).
 Email address ovs-guest@openvstorage.com with password 0vsgu3st should allow you to login and view the results
 
-## Support
+# Community
 
-* For community support, please visit our [community support forum](https://groups.google.com/forum/#!forum/open-vstorage)
-* For commercial support, please [contact Open vStorage](https://www.openvstorage.com/en/#footer)
+[Openvstorage.org](http://www.openvstorage.org) is our community website.
+If you feel like contributing, don't hesitate to do so, [here](CONTRIBUTING.md) you can find some info/guidelines
+

@@ -7,7 +7,7 @@ The core building blocks of the platform are distributed by nature and allow for
 The different services can be categorized under 3 main components, the "Open vStorage Framework", "Open vStorage Volumedriver" and "Open vStorage Backend".
 Depending on how and where these components and its sub-components get installed on any x86 hardware the Open vStorage platform can result in a 'hyper-converged', 'hyper-scale' or 'geo-scale' storage system.
 
-Open vStorage is licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
+Open vStorage is licensed under the [AGPLv3 License](http://www.gnu.org/licenses/agpl.html).
 
 ## Open vStorage Framework
 The [Framework](https://github.com/openvstorage/framework) is the comfort layer offering the user an intuitive web based graphical user interface to configure and manage the storage system.

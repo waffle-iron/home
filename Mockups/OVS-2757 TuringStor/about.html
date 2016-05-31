@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Open vStorage</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+				<script src="lib/jquery/jquery-1.9.1.js"></script>
+		<script src="lib/d3/d3.v3.min.js" charset="utf-8"></script>				
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/jquery-plugins/css/pnotify.default.css" />
+        <link rel="stylesheet" href="css/durandal.css" />
+        <link rel="stylesheet" href="css/ovs.css" />
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+		<style TYPE="text/css">
+.chart div {
+font: 10px sans-serif;
+background-color: steelblue;
+text-align: right;
+padding: 3px;
+margin: 1px;
+color: white;
+}
+
+.chart rect {
+   stroke: white;
+   fill: steelblue; 
+ }
+ 
+.chartinout rect {
+   stroke: white;
+   fill: steelblue; 
+ }
+ </style>
+		<script type="text/javascript">
+    function show(id) {
+       var e = document.getElementById(id);
+	   e.style.display = 'block';
+    }
+	
+	function hide(id) {
+       var e = document.getElementById(id);
+          e.style.display = 'none';   
+    }
+	
+	
+</script>
+		
+		
+    </head>
+    <body onload="show('vm');hide('mgmt'); hide('hdd')">
+        <div id="applicationHost">
+            <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="#full">Open vStorage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <!-- ko foreach: router.navigationModel -->
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vsas.html">VSAs</a>
+                    </li>
+						
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vpools.html">vPools</a>
+                        </li>
+					
+
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="VMs.html">vMachines</a>
+                        </li>
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="vDisks.html">vDisks</a>
+                        </li>
+						
+												<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vTemplates.html">vTemplates</a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+                <!-- below: navbar-right has float: right behavior -->
+                <ul class="nav navbar-nav navbar-right">
+ 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+				</ul>	
+            </div>
+        </div>
+    </nav>
+	<div class="container page-host" data-bind="css: { 'page-host': shared.mode() == 'full' }, router: { cacheViews: true }">
+	<section  data-active-view="true" style="">
+	<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">Open vStorage v1.0.3</span></h2></div>
+	<div class="col-md-4" >
+
+  </div>
+	</div>
+
+	 <div class="panel panel-default">
+  <div class="panel-heading"><b>Installed Packages</b></div>
+  <div class="panel-body">
+    	<ul>
+	<li>JumpScale 1.0</li>
+	<li>Open vStorage Core 1.0.3</li>
+	 <li>vStorage Driver 4.0.0</li>
+	 </ul>
+	 
+  </div>
+</div>
+	<div class="panel panel-default">
+  <div class="panel-heading"><b>Important Websites</b></div>
+  <div class="panel-body">
+    	<ul>
+	<li>Project Website: <a href="http://www.openvstorage.com">http://www.openvstorage.com</a></li>
+	<li>Source Code: <a href="https://bitbucket.org/openvstorage/">https://bitbucket.org/openvstorage/</a></li>
+	 <li>Company Website: <a href="http://www.cloudfounders.com">http://www.cloudfounders.com</a></li>
+	 </ul>
+  </div>
+</div>
+
+
+	
+	 &nbsp; <!-- Create some white space -->
+<div class="well well-sm">Reads served from the Cache : 25.123.125 // Data written to the backend : 500,00 GB // Data read from the backend : 800 GB // Bandwidth Saved : 800 GB</div>
+</section>
+</div>
+	
+       
+    </body>
+</html>

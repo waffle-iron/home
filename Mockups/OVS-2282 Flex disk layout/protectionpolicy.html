@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Open vStorage</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+		<!--<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>-->
+		<script src="lib/jquery/jquery-1.9.1.js"></script>		
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/jquery-plugins/css/pnotify.default.css" />
+        <link rel="stylesheet" href="css/durandal.css" />
+        <link rel="stylesheet" href="css/ovs.css" />
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="applicationHost">
+            <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="index.html">Open vStorage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+					                    <!-- ko foreach: router.navigationModel -->
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vsas.html">VSAs</a>
+                    </li>
+						
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vpools.html">vPools</a>
+                        </li>
+					
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="VMs.html">vMachines</a>
+                        </li>
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="vDisks.html">vDisks</a>
+                        </li>
+												<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vTemplates.html">vTemplates</a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+                <!-- below: navbar-right has float: right behavior -->
+<ul class="nav navbar-nav navbar-right">
+ 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+		  <li><a href="protectionpolicy.html">Protection policies</a></li>
+		  <li class="divider"></li>
+          <li><a href="">Change Password</a></li>
+		  <li><a href="">Customer API</a></li>		  
+          <li class="divider"></li>
+		  <li><a href="about.html">About Open vStorage</a></li>
+		  <li class="divider"></li>
+		  <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+		
+        </ul>
+      </li>
+				</ul>	
+            </div>
+        </div>
+    </nav>
+	<div class="container page-host" data-bind="css: { 'page-host': shared.mode() == 'full' }, router: { cacheViews: true }">
+	<section  data-active-view="true" style="">
+
+<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">Protection Policy</span></h2></div>
+	<div class="col-md-3" ></div><div class="col-md-1" >
+    <button type="button" class="btn btn-info" data-toggle="modal" href="#addpolicy"><span class="glyphicon glyphicon-plus"></span> Add Protection Policy</button>
+  </div>
+	</div>
+	The Protection Policy groups the retention policy and replication destination.
+    <table class="table table-hover">
+        <thead>
+         <tr>            
+		    <th>Name</th>
+			<th>Local</th>
+            <th>Remote</th>
+			<th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+			<td><a href="protpolicy.html">Gold</a></td>
+			<td><a href="policy1.html">High secure</a></td>
+			<td><a href="policy1.html">Keep all monthlies</a> (<a href="destination.html">USA DC</a>)</td>
+			<td><i class="fa fa-pencil"></i>  <i class="fa fa-trash-o"></i> </td>
+          </tr>
+          <tr>
+			<td><a href="protpolicy.html">Silver</a></td>
+			<td><a href="policy1.html">Low secure</a></td>
+			<td><a href="policy1.html">1 monthly</a> (<a href="destination.html">USA DC</a>)</td>
+			<td><i class="fa fa-pencil"></i>  <i class="fa fa-trash-o"></i> </td>
+          </tr>
+
+		</tbody>
+      </table>
+	  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>
+
+	<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">Snapshot Policy</span></h2></div>
+	<div class="col-md-3" ></div><div class="col-md-1" >
+    <button type="button" class="btn btn-info" data-toggle="modal" href="#addpolicy"><span class="glyphicon glyphicon-plus"></span> Add Snapshot Policy</button>
+  </div>
+	</div>
+	The Snapshot Policy defines how many hourly, daily, weekly and monthly Snapshots need to be retained local and replicated vMachines.
+    <table class="table table-hover">
+        <thead>
+          <tr>            
+		    <th></th>
+			<th></th>
+            <th>Snapshot Retention</th>
+			<th></th>
+			<th></th>			
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+			<th></th>
+          </tr>
+		<tr>            
+		    <th>Name</th>
+			<th>Frequency</th>
+            <th>Intra day</th>
+			<th>Daily</th>
+			<th>Weekly</th>			
+			<th>Monthly</th>
+			<th><i class="fa fa-laptop"></i><i class="fa fa-question-circle"></i></th>
+			<th><i class="fa fa-cloud-download"></i><i class="fa fa-question-circle"></i></th>
+			<th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+			<td><a href="policy1.html">High secure</a></td>
+			<td>Mon-Fri: 2h, Sat-Sun: -</td>
+			<td>-</td>
+			<td>30</td>
+			<td>-</td>			
+			<td>36</td>
+			<td><input type="checkbox" checked></td>
+			<td><input type="checkbox"></td>
+			<td><i class="fa fa-pencil"></i>  <i class="fa fa-trash-o"></i> </td>
+          </tr>
+          <tr>
+			<td><a href="policy1.html">Low secure</a></td>
+			<td>Mon-Fri: 2h, Sat-Sun: -</td>
+			<td>48</td>
+			<td>30</td>
+			<td>4</td>			
+			<td>36</td>
+			<td><input type="checkbox" checked></td>
+			<td><input type="checkbox" checked></td>
+			<td><i class="fa fa-pencil"></i>  <i class="fa fa-trash-o"></i> </td>
+          </tr>
+
+		</tbody>
+      </table>
+	  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>
+	<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">Manage Replication Tokens</span></h2></div>
+	<div class="col-md-3" ></div><div class="col-md-1" >
+    <button type="button" class="btn btn-info" data-toggle="modal" href="#addtoken"><span class="glyphicon glyphicon-plus"></span> Add new Replication Token</button>
+  </div>
+	</div>
+	Tokens are required by the Source Cluster to enable replication to this Open vStorage Cluster.
+    <table class="table table-hover">
+        <thead>
+          <tr>            
+		   <th>Friendly Name</th>
+		   <th>Source ID</th>
+			<th>User</th>
+			<th>Destination vPool</th>
+			<th>Token</th>
+            <th># vMachines</th>
+			<th># vDisks</th>
+			<th>Active</th>
+			<th>Actions</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr>
+			<td><a href="source.html">Local lab</a> <i class="fa fa-pencil"></i></td>
+			<td>pyGQVgKcSCQt5XjqpVRq</td>
+			<td>admin</td>
+			<td><a href="AmazonPool1.html">Amazon 1</a></td>
+			<td>ABAF2SDY4HDHEZ4USD42J4SJSJS</td>
+            <td>5</td>
+			<td>44</td>
+			<td><label><input type="checkbox" value="" checked></label></td>
+			<td><i class="fa fa-trash-o"></i> </td>
+          </tr>
+		    
+			<td><a href="source.html">USA DC</a> <i class="fa fa-pencil"></i></td>
+			<td>GkpKHxZhnnS8nhRyckQx</td>
+			<td>admin</td>
+			<td><a href="AmazonPool1.html">Amazon 1</a></td>			
+			<td>45784525FRGGDSHDHEZ4USD42J4SJSJS</td>
+            <td>1</td>
+			<td>4</td>
+			<td><label><input type="checkbox" value="" checked></label></td>
+			<td><i class="fa fa-trash-o"></i> </td>
+          </tr>
+		</tbody>
+      </table>
+	  
+	  		  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>	
+	
+
+	  
+	<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">Configured Replication Destinations</span></h2></div>
+	<div class="col-md-3" ></div><div class="col-md-1" >
+    <button type="button" class="btn btn-info" data-toggle="modal" href="#adddestination"><span class="glyphicon glyphicon-plus"></span> Add new Replication Destination</button>
+  </div>
+	</div>
+	A Replication Destination is a remote Open vStorage Cluster which can be used to safeguard local vMachines from this Open vStorage Cluster. 
+    <table class="table table-hover">
+        <thead>
+          <tr>            
+		    <th>Friendly Name</th>
+            <th>Mgmt. Address <span class="glyphicon glyphicon-question-sign"></span></th>
+			<th>Port</th>
+            <th>Repl. Address <span class="glyphicon glyphicon-question-sign"></span></th>
+			<th>Port</th>
+			<th>Token</th>			
+			<th>Actions</th>
+          </tr>
+
+        </thead>
+        <tbody>
+          <tr>
+		    <td><a href="destination.html">Local lab</a> <i class="fa fa-pencil"></i></td>
+            <td>10.100.18.10</td>
+			<td>443</td>
+			<td>10.100.18.111</td>
+			<td>443</td>
+			<td>ABAF2SDY4HDHEZ4USD42J4SJSJS</td>			
+			<td> <i class="fa fa-trash-o"></i> </td>
+          </tr>
+		    <td><a href="destination.html">USA DC</a> <i class="fa fa-pencil"></i></td>
+            <td>192.168.0.1</td>
+			<td>443</td>
+			<td>10.100.18.111</td>
+			<td>443</td>
+			<td>ABAF2SDY4HDHEZ4USD42J4SJSJS</td>			
+			<td><i class="fa fa-trash-o"></i> </td>
+          </tr>
+		</tbody>
+      </table>
+	
+		  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>
+	Source ID of this Environment: pyGQVgKcSCQt5XjqpVRq
+	
+
+
+	
+	
+			   <!-- Add vPool -->
+  <div class="modal fade" id="addpolicy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add a Protection Policy</h4>
+        </div>
+        <div class="modal-body">
+		<form class="form-horizontal" role="form">
+          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Name:</label>
+			<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="Name of the Protection Policy">
+			</div>
+		</div>
+		<p>Please select the amount of Snapshots for each type to keep locally and replicated:</p>
+		<div class="form-group">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-4"><label for="inputEmail3" class="control-label">Local</label></div>
+		<label for="inputEmail3" class="col-sm-3 control-label">Remote</label>
+		</div>
+		<div class="form-group">
+		<label for="inputEmail3" class="col-sm-3 control-label">Hourly:</label>
+			<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			</div>
+			<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			</div>
+</div>
+
+				<div class="form-group">
+		<label for="inputEmail3" class="col-sm-3 control-label">Daily:</label>
+			<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			</div>
+			<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			</div>			
+			</div>
+
+		<div class="form-group">
+		<label for="inputEmail3" class="col-sm-3 control-label">Weekly:</label>
+			<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			
+				
+
+
+				
+			</div>
+						<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			</div>
+			</div>
+		<div class="form-group">
+		<label for="inputEmail3" class="col-sm-3 control-label">Monthly:</label>
+			<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			
+			</div>
+			
+						<div class="col-sm-4">
+			<div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(Math.max(1, parseInt('0' + data.amount(), 10) - 1)); }">
+                            <span class="fa fa-minus"></span>
+                        </button>
+                    </span>
+                    <input type="text" id="amount" class="form-control" value="0">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" data-bind="click: function() { data.amount(parseInt('0' + data.amount(), 10) + 1); }">
+                            <span class="fa fa-plus"></span>
+                        </button>
+                    </span>
+                </div>
+			</div>
+			</div>
+
+		
+
+			
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Add Policy</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+			   <!-- Add Destination -->
+  <div class="modal fade" id="adddestination" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add a Destination</h4>
+        </div>
+        <div class="modal-body">
+		<form class="form-horizontal" role="form">  
+
+
+	          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Friendly Name:</label>
+			<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="Friendly name">
+			</div>
+		</div>
+<div class="form-group ">
+                <label class="col-lg-3 control-label" for="name" >Mgmt. Address:</label>
+                <div class="col-lg-4">
+                    <input type="text" id="name" class="autofocus form-control" data-bind="value: data.host, valueUpdate: 'afterkeydown'">
+                </div>
+                <label class="col-lg-1 control-label" for="name" data-i18n="ovs:wizards.addvpool.gathervpool.port">Port:</label>
+                <div class="col-lg-2">
+                    <input type="text" id="name" class="autofocus form-control" data-bind="value: data.port, valueUpdate: 'afterkeydown'">
+                </div>
+            </div>
+<div class="form-group ">
+                <label class="col-lg-3 control-label" for="name" >Replication Address:</label>
+                <div class="col-lg-4">
+                    <input type="text" id="name" class="autofocus form-control" data-bind="value: data.host, valueUpdate: 'afterkeydown'">
+                </div>
+                <label class="col-lg-1 control-label" for="name" data-i18n="ovs:wizards.addvpool.gathervpool.port">Port:</label>
+                <div class="col-lg-2">
+                    <input type="text" id="name" class="autofocus form-control" data-bind="value: data.port, valueUpdate: 'afterkeydown'">
+                </div>
+            </div>			
+          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Token:</label>
+			<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="Login">
+			</div>
+		</div>
+
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Add Destination</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->		
+		
+
+			   <!-- Add Token -->
+  <div class="modal fade" id="addtoken" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add a Replication Token</h4>
+        </div>
+        <div class="modal-body">
+		<form class="form-horizontal" role="form">  
+
+
+	          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Friendly Name:</label>
+			<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="Friendly name">
+			</div>
+		</div>
+
+			          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Source ID:</label>
+			<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="Source ID">
+			</div>
+		</div>
+		
+		          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Select a User:</label>
+			<div class="col-sm-9">
+			<select class="form-control">
+  <option>Admin</option>
+</select>
+			</div></div>		
+		
+	
+		          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Destination vPool:</label>
+			<div class="col-sm-9">
+			<select class="form-control">
+  <option>vPool 1</option>
+  <option>vPool 2</option>
+  <option>vPool 3</option>
+  <option>vPool 4</option>
+  <option>vPool 5</option>
+</select>
+			</div>
+		</div>
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Add Token</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->		
+		
+	
+			   <!-- Rollback a vDisk -->
+  <div class="modal fade" id="myRollback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Rollback  C-Drive</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="Name" class="col-lg-2 control-label">Select a Snapshot:</label>
+    <div class="col-lg-10">
+      <select name="amount" form="carform">
+  <option value="1">My snapshot 12 (2013-10-15 15:15:15)</option>
+  <option value="2">My First  Manual Snapshot (2013-10-15 15:15:15)</option>
+</select>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Rollback</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	  
+</section>
+</div>
+	
+       
+    </body>
+</html>

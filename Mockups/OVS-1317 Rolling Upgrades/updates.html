@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Open vStorage</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+		<!--<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>-->
+		<script src="lib/jquery/jquery-1.9.1.js"></script>		
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/jquery-plugins/css/pnotify.default.css" />
+        <link rel="stylesheet" href="css/durandal.css" />
+        <link rel="stylesheet" href="css/ovs.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <div id="applicationHost">
+            <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="index.html">Open vStorage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+					                    <!-- ko foreach: router.navigationModel -->
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vsas.html">VSAs</a>
+                    </li>
+						
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vpools.html">vPools</a>
+                        </li>
+
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="VMs.html">vMachines</a>
+                        </li>
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="vDisks.html">vDisks</a>
+                        </li>
+												<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vTemplates.html">vTemplates</a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+                <!-- below: navbar-right has float: right behavior -->
+<ul class="nav navbar-nav navbar-right">
+ 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+				</ul>	
+            </div>
+        </div>
+    </nav>
+	<div class="container page-host" data-bind="css: { 'page-host': shared.mode() == 'full' }, router: { cacheViews: true }">
+	<section  data-active-view="true" style="">
+	 <div class="col-md-4"><h2><span data-bind="html: displayname">Updates</span></h2></div>
+	<div class="col-md-8" >
+           <button type="button" class="btn btn-info" data-toggle="modal" href="#addvpool">Update Framework</button>
+           <button type="button" class="btn btn-info" data-toggle="modal" href="#addvpool">Update all Storage Routers</button>
+           <button type="button" class="btn btn-default" data-toggle="modal" href="#addvpool">Update all ASD nodes</button>
+
+
+
+  </div>
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+			<th>Framework</th>
+            <th>Storage Router</th>
+            <th>ASD Node</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="OVSVSA001.html">OVSVSA001</a></td>
+			<td>2.6.3</td>
+			<td>4.5.1</td>
+            <td>No update avaialable</td>
+          </tr>
+          <tr>
+          <tr>
+            <td><a href="OVSVSA001.html">OVSVSA001</a></td>
+			<td>2.6.3</td>
+			<td>4.5.1</td>
+            <td>No update avaialable</td>
+          </tr>          </tr>
+          <tr>
+          <tr>
+            <td><a href="OVSVSA001.html">OVSVSA001</a></td>
+			<td>2.6.3</td>
+			<td>4.5.1</td>
+            <td>No update avaialable</td>
+          </tr>          </tr>
+        </tbody>
+      </table>
+	  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>
+	
+			   <!-- Rollback a vDisk -->
+  <div class="modal fade" id="myRollback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Rollback  C-Drive</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="Name" class="col-lg-2 control-label">Select a Snapshot:</label>
+    <div class="col-lg-10">
+      <select name="amount" form="carform">
+  <option value="1">My snapshot 12 (2013-10-15 15:15:15)</option>
+  <option value="2">My First  Manual Snapshot (2013-10-15 15:15:15)</option>
+</select>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Rollback</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	  
+</section>
+</div>
+	
+       
+    </body>
+</html>

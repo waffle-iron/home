@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Open vStorage</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+				<script src="lib/jquery/jquery-1.9.1.js"></script>		
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/jquery-plugins/css/pnotify.default.css" />
+        <link rel="stylesheet" href="css/durandal.css" />
+        <link rel="stylesheet" href="css/ovs.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+		<script type="text/javascript">
+    function show(id) {
+       var e = document.getElementById(id);
+	   e.style.display = 'block';
+    }
+	
+	function hide(id) {
+       var e = document.getElementById(id);
+          e.style.display = 'none';   
+    }
+	
+	
+</script>
+		
+		
+    </head>
+    <body onload="show('snapshots');hide('mgmt'); hide('live');hide('historic'); hide('isqsi')">
+        <div id="applicationHost">
+            <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>				
+                <a class="navbar-brand"  href="">Open vStorage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    
+                    <!-- ko foreach: router.navigationModel -->
+
+					
+					<li class="dropdown">
+                        <a class="dropdown-toggle hand" data-toggle="dropdown">vPools <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="AmazonPool1.html">Amazon Pool 1</a></li>
+                            <li><a href="localdisks.html">ESXi 2 local disks</a></li>
+                            <li><a href="AmazonPool1.html">S3 main</a></li>
+                            <li><a href="AmazonPool1.html">S3 sandbox</a></li>
+                            <li><a href="newvpool.html"><i class="glyphicon glyphicon-plus"></i> &nbsp; Add vPool</a></li>
+                        </ul>
+                    </li>
+					
+
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="VMs.html">vMachines</a>
+                        </li>
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="vDisks.html">vDisks</a>
+                        </li>
+						
+												<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vTemplates.html">vTemplates</a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+                <!-- below: navbar-right has float: right behavior -->
+                <p class="navbar-text navbar-right" data-bind="visible: authentication.loggedin" style="display: none;">
+                    Signed in as <i><span data-bind="text: authentication.username"></span></i>.
+                    <a data-bind="click: authentication.logout" class="hand navbar-link">Log out</a>
+                </p>
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-bind="visible: router.isNavigating" style="display: none;">
+                        <a><i style="margin-top: 4px;" class="icon-spinner icon-spin"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	<div class="container page-host" data-bind="css: { 'page-host': shared.mode() == 'full' }, router: { cacheViews: true }">
+	<section  data-active-view="true" style="">
+	<ol class="breadcrumb">
+  <li><a href="AmazonPool1.html">Amazon Pool 1</a></li>
+  <li><a href="VM.html">Virtual Machine 11</a></li>
+  <li class="active">C-Drive</li>
+</ol>
+
+<ul class="nav nav-tabs">
+        <li class="active"><a href="#"><span class="glyphicon glyphicon-info-sign"></span> C-Drive</a></li>
+		<li><h5>&nbsp; &nbsp; Actions: <a data-toggle="modal" href="#mySnapshot"><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-camera"></span></button></a> <a href=""><button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-repeat"></span></button></a> <a data-toggle="modal" href="#mySnapshot"><button type="button" class="btn btn-default btn-xs"><span class="fa fa-clone"></span></button></a> <a data-toggle="modal" href="#mySnapshot"><button type="button" class="btn btn-default btn-xs"><span class="fa fa-bullseye"></span></button></a> <a data-toggle="modal" href="#mySnapshot"><button type="button" class="btn btn-default btn-xs"><span class="fa fa-long-arrow-up"></span></button></a></h5></li>
+	</ul>
+
+	
+
+	<div class="row">
+  <div class="col-md-4"><h4>Details</h4>
+		<div class="row">
+			<div class="col-md-6">VM:</div>
+			<div class="col-md-6"><a href="VM.html">Virtual Machine 11</a></div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">vPool:</div>
+			<div class="col-md-6"><a href="AmazonPool1.html">Amazon Pool 1</a></div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">VSA:</div>
+			<div class="col-md-6"><a href="OVSVSA001.html">OVSVSA001</a></div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">Size:</div>
+			<div class="col-md-6">50.00 GB</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">Stored Data:</div>
+			<div class="col-md-6">500.00 GB</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6"># Snapshots:</div>
+			<div class="col-md-6">50</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">DTL Mode:</div>
+			<div class="col-md-6">Synchronous <i class="fa fa-circle" style="color:green"></i></div>
+		</div>
+
+		</div>
+  <div class="col-md-4"><h4>Performance</h4>
+  		<div class="row">
+			<div class="col-md-6">Cache Hits:</div>
+			<div class="col-md-6">98.25%</div>
+		</div>
+		<!--<div class="row">
+			<div class="col-md-6">Latency:</div>
+			<div class="col-md-6">2 ms</div>
+		</div>-->
+		<div class="row">
+			<div class="col-md-6">IOPS:</div>
+			<div class="col-md-6">150.000</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">Read Speed:</div>
+			<div class="col-md-6">550.50 MiBs</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-6">Write Speed:</div>
+			<div class="col-md-6">110.1 MiBs</div>
+		</div>
+      <h4>iSCSI settings</h4>
+      <div class="row">
+			<div class="col-md-6">IP:</div>
+			<div class="col-md-6">10.100.74.252</div>
+		</div>
+      <div class="row">
+			<div class="col-md-6">IQN:</div>
+			<div class="col-md-6">iqn.1992-01.com.example</div>
+		</div>
+      <div class="row">
+			<div class="col-md-6">LUN ID:</div>
+			<div class="col-md-6">15</div>
+		</div>
+  </div>
+  
+  <div class="col-md-4"><!--<h4>vDisk Actions</h4>
+<a href=""><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-repeat"></span></button></a>-->
+  </div>
+</div>
+
+
+	&nbsp; <!-- Create some white space -->
+<ul class="nav nav-tabs">
+        <li class="active"><a href="javascript:show('snapshots');hide('mgmt');hide('historic');hide('live');hide('isqsi')" class="btn btn-default" ><span class="glyphicon glyphicon-camera"></span></a></li>
+        <li><a href="javascript:show('isqsi');hide('mgmt');hide('historic');hide('live');hide('snapshots')" class="btn btn-default" ><span class="fa fa-bullseye"></span></a></li>
+        <li><a href="javascript:show('mgmt');hide('isqsi');hide('historic');hide('live');hide('snapshots')" class="btn btn-default" ><span class="fa fa-suitcase"></span></a></li>
+	</ul>
+
+	<!--<div class="btn-group btn-group-justified">
+<a href="javascript:show('live');hide('mgmt');hide('historic');hide('snapshots');" class="btn btn-default"><span class="glyphicon glyphicon-heart"></span></a>
+<a href="javascript:show('historic');hide('mgmt');hide('snapshots');hide('live')" class="btn btn-default" ><span class="glyphicon glyphicon-dashboard"></span></a>
+		 <a href="javascript:show('snapshots');hide('mgmt');hide('historic');hide('live')" class="btn btn-default" ><span class="glyphicon glyphicon-camera"></span></a>
+<a href="javascript:show('mgmt');hide('historic');hide('snapshots');hide('live')" class="btn btn-default"><span class="glyphicon glyphicon-briefcase"></span></a>
+	</div>-->
+	 &nbsp; <!-- Create some white space -->
+	 <div id="historic">Nothing to show yet.
+	 </div>
+	 <div id="snapshots">
+	<div class="row">
+  <div class="col-md-8"><h4><span data-bind="html: displayname">vDisk Snapshots</span></h4></div>
+	<div class="col-md-4" >
+
+  </div>
+	</div>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Description</th>
+			<th>Date / Time </th>
+            <th>Stored Data</th>
+			<th>Type</th>
+			<th>Consistent</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+			<td>My first manual snapshot</td>
+			<td>2013-10-31 12:15:15</td>
+			<td>120.10 GB</td>
+			<td>Manual</td>
+			<td><span class="glyphicon glyphicon-ok"></td>
+          </tr>
+          <tr>
+			<td>My first automatic snapshot</td>
+			<td>2013-10-31 12:15:15</td>
+			<td>120.10 GB</td>
+			<td>Automatic</td>
+			<td><span class="glyphicon glyphicon-minus"></td>
+          </tr>
+          <tr>
+			<td>My first manual snapshot</td>
+			<td>2013-10-31 12:15:15</td>
+			<td>120.10 GB</td>
+			<td>Manual</td>
+			<td><span class="glyphicon glyphicon-ok"></td>
+		  </tr>
+        </tbody>
+      </table>
+	  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>
+    </div>
+	</div>
+	 <div id="mgmt">
+<div class="row">
+			<div class="col-md-1"><button type="button" class="btn btn-lg disabled"><i class="fa fa-gear"></i></button></div>
+			<div class="col-md-11"><h4>vDisk configuration</h4>
+             Below are specific configuration settings. If a vDisk has no specific settings, settings will be inherited from its vMachine, and if not set on the vMachine from its vPool.
+              <br><br>
+            <b>Distributed Transaction Log</b><br>
+<div class="row">
+<div class="col-md-3">Enable:</div><div class="col-md-3"><select class="form-control">
+  <option>Synchronous</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></div></div>
+<div class="row">
+<div class="col-md-3">Failure Domain:</div><div class="col-md-3"><select class="form-control">
+  <option>Datacenter NY</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></div>
+    </div>
+
+<b>Caching</b><br>
+<div class="row">
+<div class="col-md-3">Strategy:</div><div class="col-md-3"><select class="form-control">
+  <option>Cache on Write</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></div></div>
+<div class="row">
+<div class="col-md-3">Deduplication:</div><div class="col-md-3"><select class="form-control">
+  <option>Non-dupeded</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></div>
+    </div>
+
+
+<b>Volume</b><br>
+                <div class="row">
+<div class="col-md-3">SCO size:</div><div class="col-md-3"><select class="form-control">
+  <option>4 MiB (Default)</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></div></div>
+<div class="row">
+<div class="col-md-3">Maximum write buffer:</div><div class="col-md-3"><select class="form-control">
+  <option>1 GiB	(Default)</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+</select></div>
+    </div>
+
+
+
+	</div>
+    </div>
+    </div>
+	 <div id="live">Nothing to display yet
+	</div>
+
+    		<div id="isqsi"><h4>iSCSI Management</h4><br>
+                <div class="row">
+			<div class="col-md-3">Status:</div>
+			<div class="col-md-9">Exposed</div>
+		</div>
+      <div class="row">
+			<div class="col-md-3">IP:</div>
+			<div class="col-md-9">10.100.74.252</div>
+		</div>
+                <div class="row">
+			<div class="col-md-3">IQN:</div>
+			<div class="col-md-9">iqn.1992-01.com.example</div>
+		</div>
+      <div class="row">
+			<div class="col-md-3">LUN ID:</div>
+			<div class="col-md-9">15</div>
+		</div>
+      <div class="row">
+			<div class="col-md-3">ACL:</div>
+			<div class="col-md-9">10.100.0.0, 192.168.5.1</div>
+		</div>
+      <div class="row">
+			<div class="col-md-3">Max. IOPS:</div>
+			<div class="col-md-9">500</div>
+		</div>
+      <div class="row">
+			<div class="col-md-3">Failure Domain:</div>
+			<div class="col-md-9">California DC</div>
+		</div>
+                 <div class="col-md-6"></div><div class="col-md-6">
+<button type="button" class="btn btn-default">Save Changes</button>
+			</div>
+	</div>
+	 &nbsp; <!-- Create some white space -->
+<div class="well well-sm">Reads served from the Cache : 25.123.125 // Data written to the backend : 500,00 GB // Data read from the backend : 800 GB // Bandwidth Saved : 800 GB</div>
+</section>
+</div>
+	
+       
+    </body>
+</html>

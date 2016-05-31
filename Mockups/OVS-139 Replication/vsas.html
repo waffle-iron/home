@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Open vStorage</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+		<!--<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>-->
+		<script src="lib/jquery/jquery-1.9.1.js"></script>		
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/jquery-plugins/css/pnotify.default.css" />
+        <link rel="stylesheet" href="css/durandal.css" />
+        <link rel="stylesheet" href="css/ovs.css" />
+    </head>
+    <body>
+        <div id="applicationHost">
+            <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="index.html">Open vStorage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+					                    <!-- ko foreach: router.navigationModel -->
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vsas.html">VSAs</a>
+                    </li>
+						
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vpools.html">vPools</a>
+                        </li>
+					
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="VMs.html">vMachines</a>
+                        </li>
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="vDisks.html">vDisks</a>
+                        </li>
+												<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vTemplates.html">vTemplates</a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+                <!-- below: navbar-right has float: right behavior -->
+<ul class="nav navbar-nav navbar-right">
+ 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+				</ul>	
+            </div>
+        </div>
+    </nav>
+	<div class="container page-host" data-bind="css: { 'page-host': shared.mode() == 'full' }, router: { cacheViews: true }">
+	<section  data-active-view="true" style="">
+	<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">VSAs</span></h2></div>
+	<div class="col-md-4" >
+    <!--<div class="input-group">
+      <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+	</div>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Status</th>
+		    <th>Name</th>
+			<th>IP</th>
+			<th>Host</th>
+			<th>Type</th>
+            <th># vDisks</th>
+            <th>Stored Data</th>
+			<th>Cache</th>
+			<th>IOPS</th>
+			<!--<th>Latency</th>-->
+			<th>Read</th>
+			<th>Write</th>
+			<!--<th>Actions</th>-->
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+			<td><span class="glyphicon glyphicon-cloud" style="color:green"></td>
+			<td><a href="OVSVSA001.html">OVSVSA001</a></td>
+			<td>10.100.187.20</td>
+			<td>ESXi 187 (10.100.187.253)</td>
+			<td>ESXi 5.5</td>
+            <td>5</td>
+			<td>120.10 GB</td>
+			<td>98.00%</td>
+			<td>15.250</td>
+			
+			<td>300 MBs</td>
+			<td>10 MBs</td>
+			<!--<td><a data-toggle="modal" href="#myStop"><span class="glyphicon glyphicon-off"></span></a> <span class="glyphicon glyphicon-random" style="color:grey"></span></td>-->
+          </tr>
+                  <tr>
+				  <td><span class="glyphicon glyphicon-cloud" style="color:red"></td>
+			<td><a href="OVSVSA001.html">OVSVSA002</a></td>
+			<td>10.100.187.20</td>
+			<td>ESXi 187 (10.100.187.253)</td>
+			<td>ESXi 5.5</td>
+            <td>5</td>
+			<td>120.10 GB</td>
+			<td>98.00%</td>
+			<td>15.250</td>
+			
+			<td>300 MBs</td>
+			<td>10 MBs</td>
+			<!--<td><span class="glyphicon glyphicon-off" style="color:grey"></span> <a data-toggle="modal" href="#myMove"><span class="glyphicon glyphicon-random"></span></a></td>-->
+          </tr>
+		</tbody>
+      </table>
+	  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>
+	
+			   <!-- Shutdown a VSA -->
+  <div class="modal fade" id="myStop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Shutdown OVSVSA002</h4>
+        </div>
+        <div class="modal-body">
+         Safely shutdown the VSA OVSVSA002 and automatically migrate all vDisks to other VSAs.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Shutdown</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	  
+</section>
+</div>
+
+			   <!-- Move all vDisks -->
+  <div class="modal fade" id="myMove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Move all vDisks</h4>
+        </div>
+        <div class="modal-body">
+          Move all vDisks away from the VSA OVSVSA001 and start them on other VSAs.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Move</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	  
+</section>
+</div>
+	
+
+	
+       
+    </body>
+</html>

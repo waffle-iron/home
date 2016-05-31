@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Open vStorage</title>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css" />
+		<!--<script type="text/javascript" src="lib/bootstrap/js/bootstrap.js"></script>-->
+		<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+		<script src="lib/jquery/jquery-1.9.1.js"></script>		
+		<script src="lib/bootstrap/js/bootstrap.js"></script>
+        <link rel="stylesheet" href="lib/durandal/css/durandal.css" />
+        <link rel="stylesheet" href="lib/font-awesome/css/font-awesome.css" />
+        <link rel="stylesheet" href="lib/jquery-plugins/css/pnotify.default.css" />
+        <link rel="stylesheet" href="css/durandal.css" />
+        <link rel="stylesheet" href="css/ovs.css" />
+		<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="applicationHost">
+            <nav class="navbar navbar-default navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand"  href="index.html">Open vStorage</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+					                    <!-- ko foreach: router.navigationModel -->
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vsas.html">VSAs</a>
+                    </li>
+						
+					<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vpools.html">vPools</a>
+                        </li>
+					
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="VMs.html">vMachines</a>
+                        </li>
+                    
+                        <li data-bind="css: { active: isActive }" class="">
+                            <a  href="vDisks.html">vDisks</a>
+                        </li>
+												<li data-bind="css: { active: isActive }" class="">
+                            <a  href="vTemplates.html">vTemplates</a>
+							
+							
+                        </li>
+						<li data-bind="css: { active: isActive }" class="">
+                            <a  href="backends.html">Backends</a>
+                        </li>
+                    <!-- /ko -->
+                </ul>
+                <!-- below: navbar-right has float: right behavior -->
+<ul class="nav navbar-nav navbar-right">
+ 
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administration <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+		  <li><a href="protectionpolicy.html">Protection policies</a></li>
+		  <li class="divider"></li>
+          <li><a href="">Change Password</a></li>
+		  <li><a href="">Customer API</a></li>		  
+          <li class="divider"></li>
+		  <li><a href="about.html">About Open vStorage</a></li>
+		  <li class="divider"></li>
+		  <li><a href="#">Logout</a></li>
+        </ul>
+      </li>
+		
+        </ul>
+      </li>
+				</ul>	
+            </div>
+        </div>
+    </nav>
+	<div class="container page-host" data-bind="css: { 'page-host': shared.mode() == 'full' }, router: { cacheViews: true }">
+	<section  data-active-view="true" style="">
+	<div class="row">
+  <div class="col-md-8"><h2><span data-bind="html: displayname">Backends</span></h2></div>
+	<div class="col-md-3" ></div><div class="col-md-1" >
+    <button type="button" class="btn btn-info" data-toggle="modal" href="#addbackend"><span class="glyphicon glyphicon-plus"></span> Add new Backend</button>
+  </div>
+	</div>
+    <table class="table table-hover">
+        <thead>
+          <tr>            
+		    <th>Name</th>
+            <th>Type</th>
+			<th>Used Space</th>
+			<th>Capacity</th>
+			<th>Gets/s</th>
+			<th>Puts/s</th>
+			<th>vPools</th>
+			<th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+			<td><a href="backenddetail.html">ALBA 1</a></td>
+			<td>ALBA</td>
+			<td><div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+</div></td>
+			<td>2.50 TB</td>
+			<td>10</td>			
+			<td>20</td>
+			<td><a href="AmazonPool1.html">Storage Pool 1</a>, <a href="AmazonPool1.html">Storage Pool 2</a></td>
+			<td><i class="fa fa-circle" style="color:green"></i> <a href="backendissues.html"><span class="badge">42</span></a></td>
+          </tr>
+          <tr>
+			<td><a href="backenddetail.html">Amplidata 1</a></td>
+			<td>Amplidata</td>
+			<td><div class="progress">
+  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+    60%
+  </div>
+</div></td>
+			<td>2.50 TB</td>
+			<td>10</td>			
+			<td>20</td>
+			<td><a href="AmazonPool1.html">Storage Pool 1</a>, <a href="AmazonPool1.html">Storage Pool 2</a></td>
+			<td><i class="fa fa-circle" style="color:green"></i><a href="backendissues.html"><span class="badge">42</span></a></td>
+          </tr>
+		</tbody>
+      </table>
+	  <div data-bind="if: show_controls()">
+        <p style="margin-bottom: -15px;">
+            Showing <span data-bind="text: page_first">1</span>-<span data-bind="text: page_last">25</span>
+            from <span data-bind="text: total_items()">50</span> results.</p>
+        <ul class="pagination">
+            <!-- ko if: has_previous() --><!-- /ko -->
+            <!-- ko if: !has_previous() -->
+                <li class="disabled"><span>&lt;</span></li>
+                <li class="disabled"><span>&lt;&lt;</span></li>
+            <!-- /ko -->
+            <!-- ko foreach: pages --><!-- /ko -->
+            <!-- ko if: has_next() --><!-- /ko -->
+            <!-- ko if: !has_next() -->
+                <li class="disabled"><span>&gt;</span></li>
+                <li class="disabled"><span>&gt;&gt;</span></li>
+            <!-- /ko -->
+        </ul>		
+    </div>
+			   <!-- Add vPool -->
+  <div class="modal fade" id="addvpool" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add vPool</h4>
+        </div>
+        <div class="modal-body">
+		<form class="form-horizontal" role="form">
+          <div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Name:</label>
+			<div class="col-sm-9">
+			<input type="text" class="form-control" id="inputEmail3" placeholder="Name of the vPool">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">Backend:</label>
+			<div class="col-sm-9">
+			<select class="form-control">
+  <option>Local Filesystem</option>
+  <option>S3 Compatible</option>
+</select>
+			</div>
+			</div>
+		<div class="form-group">
+    <label for="inputEmail3" class="col-sm-3 control-label">Connection:</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="s2.amazon.com">
+    </div>
+  </div>
+ <div class="form-group">
+    <label for="inputEmail3" class="col-sm-3 control-label">Port:</label>
+    <div class="col-sm-3">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="80">
+    </div>
+  </div>
+ <div class="form-group">
+    <label for="inputEmail3" class="col-sm-3 control-label">Access key:</label>
+    <div class="col-sm-9">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Access key">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-3 control-label">Secret key:</label>
+    <div class="col-sm-9">
+      <input type="password" class="form-control" id="inputPassword3" placeholder="Secret key">
+    </div>
+  </div>
+		<div class="form-group">
+			<label for="inputEmail3" class="col-sm-3 control-label">VSAs:</label>
+			<div class="col-sm-9">
+			<select multiple class="form-control">
+  <option>VSA 1</option>
+  <option>VSA 2</option>
+  <option>VSA 2</option>
+</select>
+			</div>
+			</div>
+
+  
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Add vPool</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+  
+
+	
+			   <!-- Rollback a vDisk -->
+  <div class="modal fade" id="myRollback" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Rollback  C-Drive</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="Name" class="col-lg-2 control-label">Select a Snapshot:</label>
+    <div class="col-lg-10">
+      <select name="amount" form="carform">
+  <option value="1">My snapshot 12 (2013-10-15 15:15:15)</option>
+  <option value="2">My First  Manual Snapshot (2013-10-15 15:15:15)</option>
+</select>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Rollback</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	  
+</section>
+</div>
+	
+       
+    </body>
+</html>

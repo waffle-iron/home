@@ -51,6 +51,10 @@ Alba turns commodity x86 storage servers into an always consistent distributed o
 
 Check our gitbooks on [how to get started with an installation](https://openvstorage.gitbooks.io/openvstorage/content/Installation/index.html).
 
+# Release Notes
+The release notes for the different Open vStorage releases can be found [here](releases.md).
+
+
 # Nightly tests
 
 A view on the different sets of Nightly test runs can be found [here](http://testrail.openvstorage.com/index.php?/runs/overview/10).

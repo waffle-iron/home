@@ -26,8 +26,8 @@ The OPen vStorage Edge is a light weight block driver which can be installed on 
 By limiting the size of the metadata, the volume metadata now fits completely in RAM. The keep the metadata at an absolute minimum the deduplication was removed.
 The Volume Driver uses a (networked) shared memory server architecture to avoid multiple copies in the datapath.
 
-#### Multi-tier ALBA
-The ALBA backend now supports tiering. An all SSD ALBA backend can be used as performance tier in front of the capacity tier. Dtaa is removed from the performance tier using a Least Recently Used (LRU) strategy. Additionally ALBA supports RDMA next to TCP-IP.
+#### Multi-level ALBA
+The ALBA backend now supports different levels. An all SSD ALBA backend can be used as performance layer in front of the capacity tier. Data is removed from the cache layer using a Least Recently Used (LRU) strategy. Additionally ALBA supports RDMA next to TCP-IP.
 
 #### Multiple ASDs per device
 For low latency devices adding multiple ASDs per device might provide a higher bandwidth to the device.

@@ -47,9 +47,13 @@ Alba turns commodity x86 storage servers into an always consistent distributed o
 * [OVS Documentation](https://github.com/openvstorage/ovs-documentation): The Open vStorage Administration Guide.
 * [Volumedriver buildtools](https://github.com/openvstorage/volumedriver-buildtools): Scripts and (modified) thirdparty code required to build the Open vStorage VolumeDriver.
 
-# Getting started
+# Getting started - Documentation
+The documentation Open vStorage is split into different GitBooks:
+* [Open vStorage Administration](https://openvstorage.gitbooks.io/openvstorage/content/)
+* [Open vStorage Framework Internals](https://openvstorage.gitbooks.io/framework/content/)
+* [Open vStorage VolumeDriver Internals](https://openvstorage.gitbooks.io/volumedriver/content/)
 
-Check our gitbooks on [how to get started with an installation](https://openvstorage.gitbooks.io/openvstorage/content/Installation/index.html).
+A quick starting guide can be found [here](https://openvstorage.gitbooks.io/openvstorage/content/Installation/index.html). The above links are  pointing to the documentation for the latest version. Documentation for previous versions can be found [here](https://openvstorage.gitbooks.io/openvstorage/content/olderreleases.html).
 
 # Release Notes
 The release notes for the different Open vStorage releases can be found [here](releases.md).

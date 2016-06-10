@@ -14,42 +14,41 @@ The current latest stable release is [Eugene](eugene). The latest code changes c
 * Not applicable yet.
 
 #### Content
-#### NC-ECC presets (global and local policies)
+##### NC-ECC presets (global and local policies)
  NC-ECC (Network Connected-Error Correction Code) is an algorithm to store SCOs safely in multiple datacenters. It consists out of a global, across datacenter preset and multiple local, within a single datacentr presets.
  The NC-ECC algorithm is based on forward error correction codes and is further optimized for usage with a multi-datacenter approach. When there is a disk or node failure, additional chunks will be created using only data from within the same
 datacenter. This ensures the bandwidth between datacenters isn’t stressed in case of a simple disk failure.
 
-#### Open vStorage Edge
+##### Open vStorage Edge
 The OPen vStorage Edge is a light weight block driver which can be installed on Linux hosts and connect with the VolumeDriver over the network (TCP-IP or RDMA).
 
-#### Performance optimized Volume Driver
+##### Performance optimized Volume Driver
 By limiting the size of the metadata, the volume metadata now fits completely in RAM. The keep the metadata at an absolute minimum the deduplication was removed.
 The Volume Driver uses a (networked) shared memory server architecture to avoid multiple copies in the datapath.
 
-#### Multi-level ALBA
+##### Multi-level ALBA
 The ALBA backend now supports different levels. An all SSD ALBA backend can be used as performance layer in front of the capacity tier. Data is removed from the cache layer using a Least Recently Used (LRU) strategy. Additionally ALBA supports RDMA next to TCP-IP.
 
-#### Multiple ASDs per device
+##### Multiple ASDs per device
 For low latency devices adding multiple ASDs per device might provide a higher bandwidth to the device.
 
-#### Additional supported interfaces
+##### Additional supported interfaces
 Open vStorage now supports next to the NFS & FUSE interface also blktap, Flocker and iSCSI as interface.
 
-#### Multi-datacenter GUI
+##### Multi-datacenter GUI
 The GUI is adjusted to better highlight clusters which are spread across multiple sites.
 
-#### Tag based domains
+##### Tag based domains
 The failure domain concept has been replaced by tag based domains. ASD nodes and storage routers can now be tagged with one or more tags. Tags can be used to identify a rack, site, power feed, etc.
 
-#### ETCD
+##### ETCD
 ETCD is used to store the configuration settings for all components.
 
-#### Logs and statistics to Redis
+##### Logs and statistics to Redis
 Logs and statistics are now pushed on to a Redis queue. The Redis queue can be popped to retrieved the values and allows to be easily integrated with standard monitoring tools.
 
-#### Support for Ubuntu 16.04
+##### Support for Ubuntu 16.04
 Ubuntu 16.04 is now supported.
-
 
 ### Eugene (Jan 12 2016)
 * Release Name: Eugene

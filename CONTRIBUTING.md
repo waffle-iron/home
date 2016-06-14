@@ -16,5 +16,5 @@ A specific component enhancement can go on the respective project repositories, 
 
 ## Contributing code
 We are always happy to receive your pull requests, even it's for a small typo, we will try to process them as quickly as we can.
-But before we can accept your pull request, we need you to sign our [Contributor License Agreement](http://www.openvstorage.org/contribute).
+But before we can accept your pull request, we need you to sign our [Contributor License Agreement](http://www.openvstorage.com/contribute).
 

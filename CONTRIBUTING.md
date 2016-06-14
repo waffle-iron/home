@@ -15,5 +15,6 @@ A specific component enhancement can go on the respective project repositories, 
 [Open vStorage issue tracker](https://github.com/openvstorage/openvstorage/issues)
 
 ## Contributing code
-We are always happy to receive your pull requests, even it's for a small typo, we will try to process them as quickly as we can. Please mention you release the pull request under MIT so we can accept IT.
-Significant improvements always need a GitHub issue before anybody can start working on it.
+We are always happy to receive your pull requests, even it's for a small typo, we will try to process them as quickly as we can.
+But before we can accept your pull request, we need you to sign our [Contributor License Agreement](http://www.openvstorage.org/contribute). By contributing you agree that your contributions will be licensed under the MIT license.
+

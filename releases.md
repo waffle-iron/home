@@ -1,10 +1,9 @@
 # Open vStorage Release Notes
 
-The current latest stable release is [Eugene](eugene). The latest code changes can be found on unstable.
+The current stable release is **Eugene**. The latest daily code changes are packaged and can be installed using our unstable package repository.
+The under development release is **Fargo**
 
-
-## Release History
-### Fargo (Under development)
+## Fargo (Under development)
 * Release Name: Fargo
 * Release Type: -
 * Release Date: Planned for End Aug 2016
@@ -49,6 +48,8 @@ Logs and statistics are now pushed on to a Redis queue. The Redis queue can be p
 
 ##### Support for Ubuntu 16.04
 Ubuntu 16.04 is now supported.
+
+## Release History
 
 ### Eugene (Jan 12 2016)
 * Release Name: Eugene

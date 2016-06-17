@@ -41,6 +41,7 @@ Alba turns commodity x86 storage servers into an always consistent distributed o
 * [Openvstorage Flocker Driver](https://github.com/openvstorage/openvstorage-flocker-driver): OpenvStorage Block Device driver for Flocker, a container data orchestration system.
 * [Openvstorage Health Check](https://github.com/openvstorage/openvstorage-health-check): The health check is classified as a monitoring, detection and healing tool for Open vStorage.
 * [openvstorage-log-consolidation](https://github.com/openvstorage/openvstorage-log-consolidation): Automated installation of kibana / logstash log consolidation for Open vStorage.
+* [Open vStorage Monitoring](https://github.com/openvstorage/openvstorage-monitoring) Monitoring scripts which push logs and statistics to Redis and from Redis to InfluxDB and ELK
 * [Pyrakoon](https://github.com/openvstorage/pyrakoon): An alternative Python client for Arakoon.
 * [Qemu](https://github.com/openvstorage/qemu): Open vStorage Qemu tree.
 * [TGT](https://github.com/openvstorage/tgt): iSCSI target driver (TGT) for Open vStorage.

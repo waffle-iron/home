@@ -14,12 +14,12 @@ The under development release is **Fargo**
 
 #### Content
 ##### NC-ECC presets (global and local policies)
- NC-ECC (Network Connected-Error Correction Code) is an algorithm to store SCOs safely in multiple datacenters. It consists out of a global, across datacenter preset and multiple local, within a single datacentr presets.
+ NC-ECC (Network Connected-Error Correction Code) is an algorithm to store SCOs safely in multiple datacenters. It consists out of a global, across datacenter preset and multiple local, within a single datacenter presets.
  The NC-ECC algorithm is based on forward error correction codes and is further optimized for usage with a multi-datacenter approach. When there is a disk or node failure, additional chunks will be created using only data from within the same
 datacenter. This ensures the bandwidth between datacenters isn’t stressed in case of a simple disk failure.
 
 ##### Open vStorage Edge
-The OPen vStorage Edge is a light weight block driver which can be installed on Linux hosts and connect with the VolumeDriver over the network (TCP-IP or RDMA).
+The Open vStorage Edge is a light weight block driver which can be installed on Linux hosts and connect with the VolumeDriver over the network (TCP-IP or RDMA).
 
 ##### Performance optimized Volume Driver
 By limiting the size of the metadata, the volume metadata now fits completely in RAM. The keep the metadata at an absolute minimum the deduplication was removed.
@@ -126,7 +126,7 @@ The ALBA backend is no longer restricted and you are no longer required to apply
 * Possible race condition when adding nodes to cluster.
 
 
-### Denver (Nov 18 2015(
+### Denver (Nov 18 2015)
 
 * Release Name: Denver
 * Release Type: Major Update

@@ -1,5 +1,6 @@
 [![Stories in Ready](https://badge.waffle.io/rochacbruno/home.png?label=ready&title=Ready)](https://waffle.io/rochacbruno/home)
 [![Stories in Ready](https://badge.waffle.io/rochacbruno/home.png?label=ready&title=Ready)](https://waffle.io/rochacbruno/home)
+[![Stories in Ready](https://badge.waffle.io/rochacbruno/home.png?label=ready&title=Ready)](https://waffle.io/rochacbruno/home)
 # Open vStorage
 
 Open vStorage is an open-source software defined storage platform on top of Ethernet drives (Seagate Kinetic), object storage or a pool of traditional SATA drives.

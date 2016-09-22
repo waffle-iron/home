@@ -1,4 +1,5 @@
 [![Stories in Ready](https://badge.waffle.io/MCOD-EDU/home.png?label=ready&title=Ready)](https://waffle.io/MCOD-EDU/home)
+[![Stories in Ready](https://badge.waffle.io/MCOD-EDU/home.png?label=ready&title=Ready)](https://waffle.io/MCOD-EDU/home)
 [![Stories in Ready](https://badge.waffle.io/rochacbruno/home.png?label=ready&title=Ready)](https://waffle.io/rochacbruno/home)
 [![Stories in Ready](https://badge.waffle.io/rochacbruno/home.png?label=ready&title=Ready)](https://waffle.io/rochacbruno/home)
 [![Stories in Ready](https://badge.waffle.io/rochacbruno/home.png?label=ready&title=Ready)](https://waffle.io/rochacbruno/home)

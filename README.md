@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Jumpscale/home.png?label=ready&title=Ready)](https://waffle.io/Jumpscale/home?utm_source=badge)
 [![Stories in Ready](https://badge.waffle.io/nimscale/home.png?label=ready&title=Ready)](https://waffle.io/nimscale/home)
 [![Stories in Ready](https://badge.waffle.io/FunThomas424242/home.png?label=ready&title=Ready)](https://waffle.io/FunThomas424242/home)
 [![Stories in Ready](https://badge.waffle.io/MCOD-EDU/home.png?label=ready&title=Ready)](https://waffle.io/MCOD-EDU/home)
